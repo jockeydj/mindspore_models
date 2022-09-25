@@ -1,3 +1,5 @@
+#!/bin/bash
+
 docker_image=$1
 data_dir=$2
 model_dir=$3

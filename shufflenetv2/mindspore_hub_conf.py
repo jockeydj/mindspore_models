@@ -1,3 +1,4 @@
+"""hub config"""
 from src.shufflenetv2 import ShuffleNetV2
 
 def shufflenetv2(*args, **kwargs):

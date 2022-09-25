@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ $# != 2 ]
 then
     echo "Usage: sh air2om.sh [INPUT_MODEL_FILE] [OUTPUT_MODEL_NAME]"

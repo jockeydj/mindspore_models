@@ -1,3 +1,5 @@
+#!/bin/bash
+
 path_cur=$(dirname $0)
 
 function check_env()

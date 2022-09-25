@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ $# != 1 ]
 then
     echo "Usage: sh run.sh [DATASET_VAL_PATH]"

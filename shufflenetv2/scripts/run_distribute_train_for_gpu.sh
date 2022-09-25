@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ $# -lt 3 ] || [ $# -gt 4 ]
 then
     echo "Usage: 

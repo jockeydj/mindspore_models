@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ $# != 2 ]
 then
     echo "Usage: sh run_eval_for_gpu.sh [DATASET_PATH] [CHECKPOINT]"

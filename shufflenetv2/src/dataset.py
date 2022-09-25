@@ -5,8 +5,8 @@ import numpy as np
 
 import mindspore.common.dtype as mstype
 import mindspore.dataset as ds
-import mindspore.dataset.transforms.c_transforms as C2
-import mindspore.dataset.vision.c_transforms as C
+import mindspore.dataset.transforms as C2
+import mindspore.dataset.vision as C
 
 class toBGR():
     def __call__(self, img):
@@ -76,6 +76,7 @@ def create_dataset(dataset_path, do_train, rank, group_size,
     ]
 
     if normalize:
+        # Computed from random subset of ImageNet training images
         trans += [C.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])]
 
     trans += [

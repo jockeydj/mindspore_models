@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [[ $# -lt 4 || $# -gt 5 ]]; then
     echo "Usage: bash run_infer_310.sh [MINDIR_PATH] [DATASET_NAME] [DATASET_PATH] [NEED_PREPROCESS] [DEVICE_ID]
     DATASET_NAME can choose from ['imagenet2012'].
@@ -49,6 +51,7 @@ if [ -d ${ASCEND_HOME}/ascend-toolkit ]; then
     export PYTHONPATH=$ASCEND_HOME/fwkacllib/python/site-packages:${TBE_IMPL_PATH}:$ASCEND_HOME/ascend-toolkit/latest/fwkacllib/python/site-packages:$PYTHONPATH
     export ASCEND_OPP_PATH=$ASCEND_HOME/ascend-toolkit/latest/opp
 else
+    export ASCEND_HOME=/usr/local/Ascend/latest/
     export PATH=$ASCEND_HOME/fwkacllib/bin:$ASCEND_HOME/fwkacllib/ccec_compiler/bin:$ASCEND_HOME/atc/ccec_compiler/bin:$ASCEND_HOME/atc/bin:$PATH
     export LD_LIBRARY_PATH=$ASCEND_HOME/fwkacllib/lib64:/usr/local/lib:$ASCEND_HOME/atc/lib64:$ASCEND_HOME/acllib/lib64:$ASCEND_HOME/driver/lib64:$ASCEND_HOME/add-ons:$LD_LIBRARY_PATH
     export PYTHONPATH=$ASCEND_HOME/fwkacllib/python/site-packages:$ASCEND_HOME/atc/python/site-packages:$PYTHONPATH
@@ -61,7 +64,7 @@ function preprocess_data()
         rm -rf ./preprocess_Result
     fi
     mkdir preprocess_Result
-    python3.7 ../preprocess.py --dataset_name=$dataset_name --data_path=$dataset_path & #--result_path=./preprocess_Result/
+    python ../preprocess.py --dataset_name=$dataset_name --data_path=$dataset_path & #--result_path=./preprocess_Result/
 }
 
 function compile_app()
@@ -87,7 +90,7 @@ function infer()
 
 function cal_acc()
 {
-    python3.7 ../postprocess.py --dataset_name=$dataset_name  &> acc.log
+    python ../postprocess.py --dataset_name=$dataset_name  &> acc.log
 }
 
 if [ $need_preprocess == "y" ]; then

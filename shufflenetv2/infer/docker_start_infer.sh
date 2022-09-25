@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 docker_image=$1
 data_dir=$2
 
